@@ -1,0 +1,50 @@
+#include "model.h"
+
+//Сущность точка
+Point::Point(int x, int y) : x(x), y(y) {}
+
+//Вывод точки
+string Point::toString() const {
+    return "{" + to_string(x) + ";" + to_string(y) + "}";
+}
+
+void Point::print() const {
+    cout << "Точка: " << toString() << endl;
+}
+
+//Сущность линия
+Line::Line(Point s, Point e) : start(s), end(e) {}
+
+//Вывод линии
+string Line::toString() const {
+    return "Линия от " + start.toString() + " до " + end.toString();
+}
+
+//длина линии
+int Line::length() const {
+    int dx = end.x - start.x;
+    int dy = end.y - start.y;
+    return static_cast<int>(round(sqrt(dx * dx + dy * dy)));
+}
+
+//Вывод
+void Line::print() const {
+    cout << toString() << endl;
+}
+
+//Сущность студенты
+Student::Student(string name, vector<int> marks) : name(name), marks(marks) {}
+
+string Student::toString() const {
+    string result = name + ": [";
+    for (size_t i = 0; i < marks.size(); ++i) {
+        result += to_string(marks[i]);
+        if (i < marks.size() - 1) result += ", ";
+    }
+    result += "]";
+    return result;
+}
+
+void Student::print() const {
+    cout << toString() << endl;
+}
